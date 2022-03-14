@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:23:21 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/03/14 11:57:17 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:23:22 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_list	**ft_build_a(t_list **a, char **args, int cmpt, int argc)
 	{
 		if (ft_check_atoi(args[j]) && is_unique(ft_atoi(args[j]), *a))
 		{
-			nb = malloc(sizeof(int) * 1);
+			nb = ft_calloc(sizeof(int), 1);
 			if (nb == NULL)
 				return (NULL);
 			n = ft_atoi(args[j++]);

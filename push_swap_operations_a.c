@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:34:50 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/03/01 12:23:44 by louisea          ###   ########.fr       */
+/*   Updated: 2022/03/14 17:52:22 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ void push_tab(t_list **src, t_list **dest)
 	ft_lstadd_front(dest, temp);
 }
 
-void	swap_a(t_list *a)
+void	swap_a(t_list **a)
 {
 	// Swap the first 2 elements at the top of stack a.
-	swap_tab(a->content, a->next->content);
+	t_list	*temp;
+
+	temp = *a;
+	if (temp->next != NULL)
+		swap_tab(temp->content, temp->next->content);
 	ft_printf("sa\n");
 }
 
@@ -44,8 +48,8 @@ void	push_a(t_list **a, t_list **b)
 	// Do nothing if b is empty.
 	if (b != NULL)
 	{
-		while (*b)
-			push_tab(b, a);
+		// while (*b)
+		push_tab(b, a);
 		ft_printf("pa\n");
 	}
 }

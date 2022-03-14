@@ -6,18 +6,18 @@
 #    By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 16:17:09 by lmarecha          #+#    #+#              #
-#    Updated: 2022/03/14 15:03:17 by lmarecha         ###   ########.fr        #
+#    Updated: 2022/03/14 17:50:46 by lmarecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRC = main.c debugger.c push_swap_utils.c push_swap.c linked_list_utils.c  push_swap_operations_a.c \
-		push_swap_operations_b.c
+		push_swap_operations_b.c sort_small_list.c
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-g3 -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 

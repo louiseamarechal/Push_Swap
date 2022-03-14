@@ -6,7 +6,7 @@
 /*   By: louisea <louisea@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:14:55 by louisea           #+#    #+#             */
-/*   Updated: 2022/03/14 14:54:46 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:36:56 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	*ft_copy_a(t_list *a)
 	int	i;
 
 	i = 0;
-	tab = malloc(sizeof(int) * ft_lstsize(a));
+	tab = ft_calloc(sizeof(int), ft_lstsize(a));
 	while (a)
 	{
 		tab[i] = *(int *)a->content;
@@ -70,7 +70,7 @@ void	ft_number_a(t_list *a, int argc)
 		{
 			if (content[i] == *(int *)a->content)
 			{
-				nb = malloc(sizeof(int) * 1);
+				nb = ft_calloc(sizeof(int), 1);
 				if (nb != NULL)
 				{
 					*nb = i;
@@ -84,7 +84,7 @@ void	ft_number_a(t_list *a, int argc)
 	}
 }
 
-void	sort_big_stack(t_list **a, t_list **b)
+void	sort_big_list(t_list **a, t_list **b)
 {
 	t_list	*temp;
 	int		max_bits;
@@ -95,7 +95,7 @@ void	sort_big_stack(t_list **a, t_list **b)
 
 	a_size = ft_lstsize(*a);
 	max_bits = 0;
-	while (((ft_lstsize(*a) - 1) >> max_bits) != 0)
+	while (((a_size - 1) >> max_bits) != 0)
 		max_bits++;
 	i = 0;
 	while (i < max_bits)

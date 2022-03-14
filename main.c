@@ -6,7 +6,7 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:18:24 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/03/14 15:08:59 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:50:24 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	cmpt = 0;
 	// printf("%d", argc);
-	a = malloc(sizeof(a));
+	a = ft_calloc(sizeof(a), 1);
 	if (argc == 2)
 	{
 		// printf("==2");
@@ -40,9 +40,11 @@ int	main(int argc, char **argv)
 	}
 	ft_number_a(*a, cmpt);
 	b = malloc(sizeof(b));
-	if (cmpt > 5)
-		sort_big_stack(a, b);
-	// ft_print_tab(a);
+	if (cmpt == 3)
+		ft_sort_list_three(a);
+	else if (cmpt > 5)
+		sort_big_list(a, b);
+	ft_print_tab(a);
 	//ft_print_tab(b);
 	return (0);
 }

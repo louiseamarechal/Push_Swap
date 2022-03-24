@@ -6,14 +6,14 @@
 #    By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 16:17:09 by lmarecha          #+#    #+#              #
-#    Updated: 2022/03/14 17:50:46 by lmarecha         ###   ########.fr        #
+#    Updated: 2022/03/21 17:40:58 by louisea          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC = main.c debugger.c push_swap_utils.c push_swap.c linked_list_utils.c  push_swap_operations_a.c \
-		push_swap_operations_b.c sort_small_list.c
+SRC = main.c debugger.c push_swap_utils.c push_swap.c push_swap_operations_a.c \
+		push_swap_operations_b.c sort_small_list.c operations_utils.c
 
 CC = clang
 

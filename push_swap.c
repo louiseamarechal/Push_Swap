@@ -6,36 +6,38 @@
 /*   By: louisea <louisea@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:14:55 by louisea           #+#    #+#             */
-/*   Updated: 2022/03/14 15:36:56 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/03/24 10:35:55 by louisea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*ft_copy_a(t_list *a)
+void	ft_copy_a(t_list *a, int *tab)
 {
-	int	*tab;
 	int	i;
+	// int	*tab;
 
 	i = 0;
-	tab = ft_calloc(sizeof(int), ft_lstsize(a));
+	// free(tab); ---- check with this
+	// tab = ft_calloc(sizeof(int), ft_lstsize(a)); ---- old version
 	while (a)
 	{
 		tab[i] = *(int *)a->content;
 		a = a->next;
 		i++;
 	}
-	return (tab);
+	// return (tab);
 }
 
-int	*ft_sort_a(t_list *a)
+void	ft_sort_a(t_list *a, int *tab)
 {
-	int	*tab;
 	int	j;
-	int x;
+	int	x;
 	int	i;
+	// int	*tab;
 
-	tab = ft_copy_a(a);
+	// tab = ft_copy_a(a);
+	ft_copy_a(a, tab);
 	i = 0;
 	x = 0;
 	while (i < ft_lstsize(a))
@@ -53,27 +55,29 @@ int	*ft_sort_a(t_list *a)
 		}
 		i++;
 	}
-	return (tab);
+	// return (tab);
 }
 
-void	ft_number_a(t_list *a, int argc)
+void	ft_number_a(t_list *a, int argc, int *tab)
 {
-	int *content;
 	int	i;
 	int	*nb;
+	// int	*content;
 
-	content = ft_sort_a(a);
+	// content = ft_sort_a(a); --- old version
+	ft_sort_a(a, tab);
 	while (a)
 	{
 		i = 0;
 		while (i < argc)
 		{
-			if (content[i] == *(int *)a->content)
+			if (tab[i] == *(int *)a->content)
 			{
 				nb = ft_calloc(sizeof(int), 1);
 				if (nb != NULL)
 				{
 					*nb = i;
+					free(a->content);
 					a->content = nb;
 					break ;
 				}
@@ -82,21 +86,16 @@ void	ft_number_a(t_list *a, int argc)
 		}
 		a = a->next;
 	}
+	// free(tab); ---- check with this or the one from ft_copy_a or both
 }
 
-void	sort_big_list(t_list **a, t_list **b)
+void	sort_large_list(t_list **a, t_list **b, int max_bits, int a_size)
 {
-	t_list	*temp;
-	int		max_bits;
-	int		a_size;
 	int		i;
 	int		j;
 	int		num;
+	t_list	*temp;
 
-	a_size = ft_lstsize(*a);
-	max_bits = 0;
-	while (((a_size - 1) >> max_bits) != 0)
-		max_bits++;
 	i = 0;
 	while (i < max_bits)
 	{
@@ -115,4 +114,16 @@ void	sort_big_list(t_list **a, t_list **b)
 			push_a(a, b);
 		i++;
 	}
+}
+
+void	sort_big_list(t_list **a, t_list **b)
+{
+	int		max_bits;
+	int		a_size;
+
+	a_size = ft_lstsize(*a);
+	max_bits = 0;
+	while (((a_size - 1) >> max_bits) != 0)
+		max_bits++;
+	sort_large_list(a, b, max_bits, a_size);
 }

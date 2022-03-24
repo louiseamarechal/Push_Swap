@@ -6,29 +6,20 @@
 /*   By: lmarecha <lmarecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:23:21 by lmarecha          #+#    #+#             */
-/*   Updated: 2022/03/14 15:23:22 by lmarecha         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:48:36 by louisea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	del_content(void *content)
-// {
-// 	free(content[0]);
-// 	free(content[1]);
-// 	free(content);
-// }
-
-int	ft_error(char *message, t_list **a)
+int	ft_error(t_list **a)
 {
-	// (void)a;
-	ft_printf("%s\n", message);
-	ft_lstclear(a, &free); //to add parameter wtf
-	ft_print_tab(a);
+	write(2, "Error\n", 6);
+	ft_lstclear(a, &free);
 	exit(EXIT_FAILURE);
 }
 
-t_list	**ft_build_a(t_list **a, char **args, int cmpt, int argc)
+t_list	**ft_build_a(char **args, int cmpt, int argc, t_list **a)
 {
 	int		n;
 	int		j;
@@ -52,7 +43,7 @@ t_list	**ft_build_a(t_list **a, char **args, int cmpt, int argc)
 			ft_lstadd_back(a, lstnew);
 		}
 		else
-			ft_error("Error", a);
+			ft_error(a);
 	}
 	return (a);
 }
@@ -68,26 +59,49 @@ int	is_unique(int n, t_list *a)
 	return (1);
 }
 
-int	ft_check_atoi(char *tab)
+int	operator_test(char *tab)
 {
+	int	i;
+
+	i = 0;
 	if (*tab == '-' || *tab == '+')
 	{
 		if (*tab == '-')
 		{
 			tab++;
+			if (!ft_isdigit(*tab))
+				return (0);
+			while (tab[i])
+			{
+				if (!ft_isdigit(tab[i]))
+					return (0);
+				i++;
+			}
 			if (ft_strlen(tab) >= 10)
 			{
-				if (ft_strncmp("2147483648",tab, 11) < 0)
+				if (ft_strncmp("2147483648", tab, 11) < 0)
 					return (0);
 			}
 		}
+	}
+	return (1);
+}
+
+int	ft_check_atoi(char *tab)
+{
+	if (!operator_test(tab))
+		return (0);
+	if (*tab == '-' || *tab == '+')
+	{
+		if (*tab == '-' && operator_test(tab))
+			return (1);
 		tab++;
 	}
 	if (ft_strlen(tab) > 10)
 		return (0);
 	else if (ft_strlen(tab) == 10)
 	{
-		if (ft_strncmp("2147483647",tab, 10) < 0)
+		if (ft_strncmp("2147483647", tab, 10) < 0)
 			return (0);
 	}
 	while (*tab)

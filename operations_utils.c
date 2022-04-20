@@ -6,7 +6,7 @@
 /*   By: louisea <louisea@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:41:18 by louisea           #+#    #+#             */
-/*   Updated: 2022/03/22 11:14:01 by louisea          ###   ########.fr       */
+/*   Updated: 2022/03/24 16:43:54 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ int	is_sorted_a(t_list *a)
 	while (a->next)
 	{
 		j = a->next;
-		// j = ft_calloc(sizeof(t_list), 1);
-		// if (j != NULL)
-		// {
-		// 	j->content = a->next->content;
-		// 	j->next = a->next->next;
-		// }
 		while (j)
 		{
 			if ((*(int *)j->content) < (*(int *)a->content))

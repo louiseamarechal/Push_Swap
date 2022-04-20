@@ -6,7 +6,7 @@
 /*   By: louisea <louisea@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:14:55 by louisea           #+#    #+#             */
-/*   Updated: 2022/03/24 10:35:55 by louisea          ###   ########.fr       */
+/*   Updated: 2022/03/24 16:44:24 by lmarecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 void	ft_copy_a(t_list *a, int *tab)
 {
 	int	i;
-	// int	*tab;
 
 	i = 0;
-	// free(tab); ---- check with this
-	// tab = ft_calloc(sizeof(int), ft_lstsize(a)); ---- old version
 	while (a)
 	{
 		tab[i] = *(int *)a->content;
 		a = a->next;
 		i++;
 	}
-	// return (tab);
 }
 
 void	ft_sort_a(t_list *a, int *tab)
@@ -34,9 +30,7 @@ void	ft_sort_a(t_list *a, int *tab)
 	int	j;
 	int	x;
 	int	i;
-	// int	*tab;
 
-	// tab = ft_copy_a(a);
 	ft_copy_a(a, tab);
 	i = 0;
 	x = 0;
@@ -55,16 +49,13 @@ void	ft_sort_a(t_list *a, int *tab)
 		}
 		i++;
 	}
-	// return (tab);
 }
 
 void	ft_number_a(t_list *a, int argc, int *tab)
 {
 	int	i;
 	int	*nb;
-	// int	*content;
 
-	// content = ft_sort_a(a); --- old version
 	ft_sort_a(a, tab);
 	while (a)
 	{
@@ -86,7 +77,6 @@ void	ft_number_a(t_list *a, int argc, int *tab)
 		}
 		a = a->next;
 	}
-	// free(tab); ---- check with this or the one from ft_copy_a or both
 }
 
 void	sort_large_list(t_list **a, t_list **b, int max_bits, int a_size)
